@@ -1,26 +1,59 @@
-//LEGGERE LE ISTRUZIONI NEL FILE README.md
-
-//Import di Classi Java necessarie al funzionamento del programma
 import java.util.Scanner;
 
-// Classe principale, con metodo main
-class Esercizio {
-    // Il programma parte con una chiamata a main().
-    public static void main(String args[])
-    {
-        //Variabili del programma
-        String nome;
+public class Formula1 {
+    public static void main(String[] args) {
+        // Creazione di uno scanner per leggere l'input dell'utente
+        Scanner scanner = new Scanner(System.in);
 
-        //Creo l'oggetto in per l'input da tastiera
-        Scanner in = new Scanner( System.in );
+        // Chiediamo all'utente il numero di giri della gara
+        System.out.print("Inserisci il numero di giri della gara: ");
+        int N = scanner.nextInt();
 
-        //Leggo l'input da tastiera
-        System.out.print("Inserisci il tuo nome: ");
-        nome = in.nextLine();
+        // Dichiarazione dei vettori per i tempi di Hamilton e Verstappen
+        double[] tempiHamilton = new double[N];
+        double[] tempiVerstappen = new double[N];
 
-        //Output del nome acquisito da tastiera
-        System.out.println("Ciao "+nome+"!");
-    }
-}
+        // Chiediamo all'utente i tempi di Hamilton per ogni giro
+        System.out.println("Inserisci i tempi di Hamilton per ogni giro (in secondi):");
+        for (int i = 0; i < N; i++) {
+            System.out.print("Giro " + (i + 1) + ": ");
+            tempiHamilton[i] = scanner.nextDouble();
+        }
+
+        // Chiediamo all'utente i tempi di Verstappen per ogni giro
+        System.out.println("Inserisci i tempi di Verstappen per ogni giro (in secondi):");
+        for (int i = 0; i < N; i++) {
+            System.out.print("Giro " + (i + 1) + ": ");
+            tempiVerstappen[i] = scanner.nextDouble();
+        }
+
+        // Calcoliamo il tempo totale di gara per Hamilton e Verstappen
+        double tempoTotaleHamilton = 0;
+        double tempoTotaleVerstappen = 0;
+
+        for (int i = 0; i < N; i++) {
+            tempoTotaleHamilton += tempiHamilton[i];
+            tempoTotaleVerstappen += tempiVerstappen[i];
+        }
+
+        // Determiniamo il vincitore della gara
+        String vincitore = (tempoTotaleHamilton < tempoTotaleVerstappen) ? "Hamilton" : "Verstappen";
+
+        // Troviamo il giro più veloce
+        double giroPiuVeloceHamilton = Double.MAX_VALUE;
+        double giroPiuVeloceVerstappen = Double.MAX_VALUE;
+        for (int i = 0; i < N; i++) {
+            if (tempiHamilton[i] < giroPiuVeloceHamilton) {
+                giroPiuVeloceHamilton = tempiHamilton[i];
+            }
+            if (tempiVerstappen[i] < giroPiuVeloceVerstappen) {
+                giroPiuVeloceVerstappen = tempiVerstappen[i];
+            }
+        }
+
+        // Determiniamo chi ha fatto il giro più veloce
+        String giroVeloce = (giroPiuVeloceHamilton < giroPiuVeloceVerstappen) ? "Hamilton" : "Verstappen";
+
+        // Visualizziamo il risul
 
 //LEGGERE LE ISTRUZIONI NEL FILE README.md
